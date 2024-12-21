@@ -1,0 +1,47 @@
+---
+import Hamburger from './Hamburger.astro';
+import AppLogo from '../assets/appLogo.png';
+---
+
+<nav class={`flex justify-between space-x-6 font-semibold px-8 py-4 items-center`} id="navbar">
+  <!-- Desktop Menu -->
+  <a href="/">
+    <div class="logo-img pr-5 flex items-center">
+      <img src={AppLogo.src} class="w-12 h-12"/>
+      <div class="pl-4 font-bold text-xl max-md:hidden">Pet Pilot</div>
+    </div>
+  </a>
+  <div class='hidden md:p-6 md:flex md:justify-around items-center md:space-x-6'>
+    <a href="/" class="cursor-pointer">Features</a>
+    <a href="/" class="cursor-pointer">FAQ</a>
+    <a href="/chatbot " class="cursor-pointer">Explore</a>
+  </div>
+
+  <!-- Hamburger Menu Button -->
+  <button class='md:hidden p-6  z-50 ' id="burger-button">
+    <Hamburger />
+  </button>
+
+  <!-- Mobile Menu -->
+  <div class='absolute top-16 right-0 w-full p-4 shadow-lg md:hidden hidden pt-6' id="mobile-menu">
+    <a href="/features" class="block px-4 py-2 text-sm text-gray-700">Features</a>
+    <a href="/faq" class="block px-4 py-2 text-sm text-gray-700">FAQ</a>
+    <a href="/services" class="block px-4 py-2 text-sm text-gray-700">Explore</a>
+  </div>
+</nav>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const burgerButton = document.getElementById('burger-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const navbar = document.getElementById('navbar');
+
+    burgerButton?.addEventListener('click', function () {
+      const isOpen = mobileMenu?.classList.contains('hidden');
+      mobileMenu?.classList.toggle('hidden', !isOpen);
+      navbar?.classList.toggle('mb-32', isOpen);
+      navbar?.classList.toggle('mb-8', !isOpen);
+      // burgerButton.innerHTML = isOpen ? '<Hamburger />' : '<Close />';
+    });
+  });
+</script>
