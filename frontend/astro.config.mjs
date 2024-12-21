@@ -1,5 +1,9 @@
-// @ts-check
+// astro.config.mjs
 import { defineConfig } from 'astro/config';
 
-// https://astro.build/config
-export default defineConfig({});
+export default defineConfig({
+  server: {
+    host: '0.0.0.0',  // Important for devcontainer
+    port: 4321
+  }
+});
